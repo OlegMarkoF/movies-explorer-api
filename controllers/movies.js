@@ -3,7 +3,7 @@ const BadRequestError = require('../utils/BadRequestError');
 const NotFoundError = require('../utils/NotFoundError');
 const ForbiddenError = require('../utils/ForbiddenError');
 
-module.exports.getMovies = (req, res, next) => {
+module.exports.getMovie = (req, res, next) => {
   Movie.find({})
     .then((movie) => res.send({ data: movie }))
     .catch(next);
