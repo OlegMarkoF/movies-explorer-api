@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { UserNotFound } = require('../errors/not-found-err');
+const { UserNotFound } = require('../utils/NotFoundError');
 
 const userRoutes = require('./users');
 const movieRoutes = require('./movies');
-const auth = require('../middlwares/auth');
+const auth = require('../middlewares/auth');
 
 router.use('/users', auth, userRoutes);
 router.use('/movies', auth, movieRoutes);
