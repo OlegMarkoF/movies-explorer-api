@@ -5,8 +5,10 @@ const ForbiddenError = require('../utils/ForbiddenError');
 
 module.exports.getMovie = (req, res, next) => {
   Movie.find({})
-    .then((movie) => res.send({ data: movie }))
-    .catch(next);
+    .then((movies) => res.send({ data: movies }))
+    .catch(() => {
+      next();
+    });
 };
 
 module.exports.createMovie = (req, res, next) => {

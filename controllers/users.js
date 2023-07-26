@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const BadRequestError = require('../utils/BadRequestError');
-// const NotFoundError = require('../utils/NotFoundError');
 const ConflictError = require('../utils/ConflictError');
 
 const { JWT_SECRET } = require('../utils/config');
@@ -56,14 +55,16 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.updateUser = (req, res, next) => {
-  const { name, about } = req.body;
+  const { name, email } = req.body;
 
   User
-    .findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
+    .findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
     .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы не корректные данные'));
+      } else if (err.code === 11000) {
+        next(new ConflictError('Пользователь уже существует'));
       } else {
         next(err);
       }
