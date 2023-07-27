@@ -22,6 +22,10 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.logout = (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Вы вышли из системы' });
+};
+
 module.exports.getMe = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => res.send({ data: user }))

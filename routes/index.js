@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { validateUser, validateLogin } = require('../middlewares/validation');
-const { login, createUser } = require('../controllers/users');
+const { login, createUser, logout } = require('../controllers/users');
 const NotFoundError = require('../utils/NotFoundError');
 const userRoutes = require('./users');
 const movieRoutes = require('./movies');
@@ -8,7 +8,7 @@ const auth = require('../middlewares/auth');
 
 router.post('/signin', validateLogin, login);
 router.post('/signup', validateUser, createUser);
-// router.get('/signout', logout);
+router.get('/signout', logout);
 router.use('/users', auth, userRoutes);
 router.use('/movies', auth, movieRoutes);
 router.use('*', auth, (req, res, next) => {
