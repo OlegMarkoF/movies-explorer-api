@@ -7,14 +7,7 @@ const allowedCors = [
   'https://markov.nomoredomains.xyz',
 ];
 
-const defaultAllowedMethods = [
-  'GET',
-  'HEAD',
-  'PUT',
-  'PATCH',
-  'POST',
-  'DELETE',
-];
+const defaultAllowedMethods = 'GET, HEAD, PUT, PATCH, POST, DELETE';
 
 function cors(req, res, next) {
   const { origin } = req.headers;
@@ -27,7 +20,7 @@ function cors(req, res, next) {
   }
 
   if (method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', defaultAllowedMethods.join(','));
+    res.header('Access-Control-Allow-Methods', defaultAllowedMethods);
     res.header('Access-Control-Allow-Headers', requestHeaders);
     return res.end();
   }
