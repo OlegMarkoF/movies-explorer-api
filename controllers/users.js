@@ -17,7 +17,7 @@ module.exports.login = (req, res, next) => {
         JWT_SECRET,
         { expiresIn: '7d' },
       );
-      res.send({ jwt: token });
+      res.send({ token });
     })
     .catch(next);
 };
@@ -28,7 +28,7 @@ module.exports.logout = (req, res) => {
 
 module.exports.getMe = (req, res, next) => {
   User.findById(req.user._id)
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch(next);
 };
 
@@ -63,7 +63,7 @@ module.exports.updateUser = (req, res, next) => {
 
   User
     .findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы не корректные данные'));
