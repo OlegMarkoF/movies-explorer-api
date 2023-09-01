@@ -1,10 +1,10 @@
 const allowedCors = [
   'http://localhost:3000',
   'http://localhost:3001',
-  'http://markov.nomoredomains.xyz',
-  'https://markov.nomoredomains.xyz',
   'http://markov.project.nomoredomainsicu.ru',
   'https://markov.project.nomoredomainsicu.ru',
+  'http://markov.nomoredomains.xyz',
+  'https://markov.nomoredomains.xyz',
 ];
 
 const defaultAllowedMethods = [
