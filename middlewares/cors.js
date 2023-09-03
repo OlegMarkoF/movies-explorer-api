@@ -1,8 +1,10 @@
 const allowedCors = [
   'http://markov.project.nomoredomainsicu.ru',
   'http://markov.nomoredomains.xyz',
+  'http://api.nomoreparties.co',
   'https://markov.project.nomoredomainsicu.ru',
   'https://markov.nomoredomains.xyz',
+  'https://api.nomoreparties.co',
   'http://localhost:3000',
   'http://localhost:3001',
 ];
