@@ -5,7 +5,7 @@ const ForbiddenError = require('../utils/ForbiddenError');
 
 module.exports.getMovie = (req, res, next) => {
   Movie.find({ owner: req.user._id })
-    .then((movies) => res.send({ data: movies }))
+    .then((movies) => res.send(movies))
     .catch(() => {
       next();
     });
@@ -39,7 +39,7 @@ module.exports.createMovie = (req, res, next) => {
     nameEN,
     owner: req.user._id,
   })
-    .then((movie) => res.status(201).send({ data: movie }))
+    .then((movie) => res.status(201).send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные'));
@@ -50,7 +50,7 @@ module.exports.createMovie = (req, res, next) => {
 };
 
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findById({ _id: req.params._id })
+  Movie.findById(req.params._id)
     .orFail(new NotFoundError('Карточка не найдена'))
     .then((movie) => {
       if (!movie.owner.equals(req.user._id)) {
