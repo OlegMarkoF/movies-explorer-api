@@ -11,8 +11,8 @@ router.post('/signup', validateUser, createUser);
 router.get('/signout', logout);
 router.use('/users', auth, userRoutes);
 router.use('/movies', auth, movieRoutes);
-router.use('*', auth, (req, res, next) => {
-  next(new NotFoundError('Страница не найдена'));
+router.use('*', auth, () => {
+  throw new NotFoundError('Страница не найдена');
 });
 
 module.exports = router;

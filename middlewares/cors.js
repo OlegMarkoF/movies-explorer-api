@@ -1,18 +1,15 @@
 const allowedCors = [
+  'http://markov.project.nomoredomainsicu.ru',
+  'http://markov.nomoredomains.xyz',
+  'http://api.nomoreparties.co',
+  'https://markov.project.nomoredomainsicu.ru',
+  'https://markov.nomoredomains.xyz',
+  'https://api.nomoreparties.co',
   'http://localhost:3000',
   'http://localhost:3001',
-  'http://markov.nomoredomains.xyz',
-  'https://markov.nomoredomains.xyz',
 ];
 
-const defaultAllowedMethods = [
-  'GET',
-  'HEAD',
-  'PUT',
-  'PATCH',
-  'POST',
-  'DELETE',
-];
+const defaultAllowedMethods = 'GET, HEAD, PUT, PATCH, POST, DELETE';
 
 function cors(req, res, next) {
   const { origin } = req.headers;
@@ -25,7 +22,7 @@ function cors(req, res, next) {
   }
 
   if (method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', defaultAllowedMethods.join(','));
+    res.header('Access-Control-Allow-Methods', defaultAllowedMethods);
     res.header('Access-Control-Allow-Headers', requestHeaders);
     return res.end();
   }
