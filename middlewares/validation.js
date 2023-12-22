@@ -5,16 +5,16 @@ module.exports.validateMovie = celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
     director: Joi.string().required(),
-    duration: Joi.string().required(),
+    duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
     image: Joi.string().pattern(VALIDATION_REG_EXP_FOR_URL).required(),
     trailerLink: Joi.string().pattern(VALIDATION_REG_EXP_FOR_URL).required(),
     thumbnail: Joi.string().pattern(VALIDATION_REG_EXP_FOR_URL).required(),
     owner: Joi.string().length(24).hex(),
-    movieId: Joi.string().required(),
-    nameRU: Joi.string().pattern(VALIDATION_REG_EXP_FOR_URL).required(),
-    nameEN: Joi.string().pattern(VALIDATION_REG_EXP_FOR_URL).required(),
+    movieId: Joi.number().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
   }),
 });
 
